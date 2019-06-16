@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker-compose up
+  - docker-compose up --build
 
 before_install:
   - sudo apt-get update
