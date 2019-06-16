@@ -5,10 +5,12 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
+    OneToMany,
 } from "typeorm";
 import { Length } from "class-validator";
 import Messages from "../utils/messages";
 import { PlaceCategory } from "./placeCategory.entity";
+import { Access } from "./access.entity";
 
 
 /**
@@ -28,6 +30,9 @@ export class Place {
 
     @ManyToOne(type => PlaceCategory, placeCategory => placeCategory.places)
     category: PlaceCategory;
+
+    @OneToMany(type => Access, access => access.place)
+    accesses: Access[];
 
     @Column({ length: 64 })
     @Length(3, 64, {
