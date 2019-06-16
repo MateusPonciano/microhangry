@@ -1,0 +1,19 @@
+language: node_js
+
+services:
+  - docker
+
+script:
+  - docker-compose up
+
+before_install:
+  - sudo apt-get update
+  - docker ps
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: docs
+  on:
+    branch: stable
