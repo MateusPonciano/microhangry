@@ -9,6 +9,7 @@ script:
 before_install:
   - sudo apt-get update
   - docker ps
+  - sudo service postgresql stop
 
 deploy:
   provider: pages
