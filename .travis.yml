@@ -12,9 +12,9 @@ before_install:
   - sudo service postgresql stop
 
 deploy:
-  provider: pages
+  provider: heroku
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: docs
+  api_key: $HEROKU_TOKEN
+  app: microhangry-api
   on:
     branch: stable
