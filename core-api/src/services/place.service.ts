@@ -4,6 +4,7 @@ import { ServerError, ErrorCode } from "../utils/serverError";
 import { ValidationError, validate } from "class-validator";
 import { PlaceCategoryService } from "./placeCategory.service";
 import Messages from "../utils/messages";
+import { SafeAccess } from "src/entities/access.entity";
 
 /**
  * @namespace Services
@@ -66,6 +67,17 @@ export class PlaceService {
         try {
             const places: Place[] = await repository.find();
             return places.map((place) => place.toSafe());
+        } catch (e) {
+            throw new ServerError(e.message, ErrorCode.DATABASE_ERROR);
+        }
+    }
+
+    public static async findAccesses(id: number): Promise<SafeAccess[] | null> {
+        const repository = db.getRepository(Place);
+
+        try {
+            const place: Place = await repository.findOne(id);
+            return place ? place.accesses.map(ac => ac.toSafe()) : null;
         } catch (e) {
             throw new ServerError(e.message, ErrorCode.DATABASE_ERROR);
         }
