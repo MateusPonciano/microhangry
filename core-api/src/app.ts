@@ -11,7 +11,7 @@ import MealRouter from './routes/meal.route';
 
 class Core {
     public app: Express.Application;
-    public PORT = '8080';
+    public PORT = process.env.PORT;
 
     constructor() {
         this.app = Express();
@@ -21,7 +21,7 @@ class Core {
     public async start() {
         console.log(`Core API started.`);
 
-        this.app.listen(8080, () => {
+        this.app.listen(this.PORT, () => {
             console.log(`Server listening in http://localhost:${this.PORT}`);
         });
     }
