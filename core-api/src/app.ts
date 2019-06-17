@@ -21,7 +21,7 @@ class Core {
     public async start() {
         console.log(`Core API started.`);
 
-        this.app.listen(this.PORT, () => {
+        this.app.listen(8080, () => {
             console.log(`Server listening in http://localhost:${this.PORT}`);
         });
     }
