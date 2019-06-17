@@ -15,6 +15,7 @@ after_success:
   - docker login -u _ -p "$HEROKU_TOKEN"  registry.heroku.com
   - docker tag microhangry_core-api registry.heroku.com/micro-teste/web
   - docker push registry.heroku.com/micro-teste/web
+  - heroku run --app micro-teste npm run typeorm -- migration:run
 
 deploy:
   provider: Heroku
