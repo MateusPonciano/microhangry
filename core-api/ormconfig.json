@@ -11,5 +11,6 @@
     "cli": {
         "entitiesDir": "src/entities",
         "migrationsDir": "./src/database/migration"
-    }
+    },
+    "migrationRun": true
 }
