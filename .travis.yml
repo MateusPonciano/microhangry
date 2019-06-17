@@ -4,17 +4,14 @@ services:
   - docker
 
 script:
-  - docker-compose up --build
+  - docker-compose build
 
 before_install:
   - sudo apt-get update
   - docker ps
   - sudo service postgresql stop
 
-deploy:
-  provider: heroku
-  skip_cleanup: true
-  api_key: $HEROKU_TOKEN
-  app: microhangry-api
-  on:
-    branch: stable
+after_success:
+  - docker login -u _ -p "$HEROKU_TOKEN"  registry.heroku.com
+  - docker build -t registry.heroku.com/micro-teste/web -f ./core-api/Dockerfile
+  - docker push registry.heroku.com/micro-teste/web
