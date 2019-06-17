@@ -13,5 +13,5 @@ before_install:
 
 after_success:
   - docker login -u _ -p "$HEROKU_TOKEN"  registry.heroku.com
-  - docker tag micro-teste:latest registry.heroku.com/micro-teste/web
+  - docker tag core-api registry.heroku.com/micro-teste/web
   - docker push registry.heroku.com/micro-teste/web
