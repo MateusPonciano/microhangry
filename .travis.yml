@@ -12,6 +12,8 @@ before_install:
   - sudo service postgresql stop
 
 after_success:
+  - docker images
+  - docker info
   - docker login -u _ -p "$HEROKU_TOKEN"  registry.heroku.com
-  - docker tag core-api registry.heroku.com/micro-teste/web
+  - docker tag core-api:latest registry.heroku.com/micro-teste/web
   - docker push registry.heroku.com/micro-teste/web
