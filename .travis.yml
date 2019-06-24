@@ -13,8 +13,8 @@ before_install:
 deploy:
   provider: Heroku
   api_key: $HEROKU_TOKEN
-  app: microhangry-api
+  app: micro-teste
   on:
-    branch: master
+    branch: sprint3/ci-cd
   run:
     - npm run typeorm -- migration:run
