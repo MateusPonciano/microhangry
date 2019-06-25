@@ -3,18 +3,13 @@ language: node_js
 services:
   - docker
 
-script:
-  - docker-compose build
-
 before_install:
   - sudo apt-get update
   - docker ps
+  - docker-compose build
 
 deploy:
-  provider: Heroku
-  api_key: $HEROKU_TOKEN
-  app: micro-teste
+  provider: script
+  script: bash deploy.sh
   on:
-    branch: sprint3/ci-cd
-  run:
-    - npm run typeorm -- migration:run
+    branch: master
